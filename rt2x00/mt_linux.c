@@ -583,7 +583,7 @@ VOID SendAndesTFSWITCH(
 		NdisZeroMemory(&CmdUnit, sizeof(CmdUnit));
 		CmdUnit.u.ANDES.Type = PKT_CMD_TYPE_COEX_OP;
 		CmdUnit.u.ANDES.CmdPayloadLen = coexTFLength;
-		CmdUnit.u.ANDES.CmdPayload = &coexTF;
+		CmdUnit.u.ANDES.CmdPayload = (u8 *) &coexTF;
 
 		CmdUnit.u.ANDES.NeedRsp = FALSE;
 		CmdUnit.u.ANDES.NeedWait = FALSE;
@@ -1090,7 +1090,7 @@ VOID SendAndesCoexFrameInfo(
 		NdisZeroMemory(&CmdUnit, sizeof(CmdUnit));
 		CmdUnit.u.ANDES.Type = PKT_CMD_TYPE_COEX_OP;
 		CmdUnit.u.ANDES.CmdPayloadLen = coexProtectionFrameInfoLength;
-		CmdUnit.u.ANDES.CmdPayload = &coexProtectionFrameInfo;
+		CmdUnit.u.ANDES.CmdPayload = (u8 *) &coexProtectionFrameInfo;
 
 		CmdUnit.u.ANDES.NeedRsp = FALSE;
 		CmdUnit.u.ANDES.NeedWait = FALSE;
@@ -1845,7 +1845,7 @@ VOID SendLEDCmd(
 	
 	CmdUnit.u.ANDES.Type = CMD_LED_MODE_OP;
 	CmdUnit.u.ANDES.CmdPayloadLen = sizeof(LEDParameter);
-	CmdUnit.u.ANDES.CmdPayload = LEDParameter;
+	CmdUnit.u.ANDES.CmdPayload = (u8 *) LEDParameter;
 	
 	CmdUnit.u.ANDES.NeedRsp = FALSE;
 	CmdUnit.u.ANDES.NeedWait = FALSE;
@@ -1965,7 +1965,7 @@ VOID SendAndesWLANStatus(
 	
 	CmdUnit.u.ANDES.Type = PKT_CMD_TYPE_COEX_OP;
 	CmdUnit.u.ANDES.CmdPayloadLen = wlanStatusLength;
-	CmdUnit.u.ANDES.CmdPayload = &wlanStatus;
+	CmdUnit.u.ANDES.CmdPayload = (u8 *) &wlanStatus;
 	
 	CmdUnit.u.ANDES.NeedRsp = FALSE;
 	CmdUnit.u.ANDES.NeedWait = FALSE;
@@ -2004,7 +2004,7 @@ VOID SendAndesCCUForceMode(
 	
 	CmdUnit.u.ANDES.Type = PKT_CMD_TYPE_COEX_OP;
 	CmdUnit.u.ANDES.CmdPayloadLen = coexTFLength;
-	CmdUnit.u.ANDES.CmdPayload = &coexTF;
+	CmdUnit.u.ANDES.CmdPayload = (u8 *) &coexTF;
 	
 	CmdUnit.u.ANDES.NeedRsp = FALSE;
 	CmdUnit.u.ANDES.NeedWait = FALSE;
@@ -2088,7 +2088,7 @@ VOID SendAndesAFH(
 	
 	CmdUnit.u.ANDES.Type = PKT_CMD_TYPE_COEX_OP;
 	CmdUnit.u.ANDES.CmdPayloadLen = coexAFHLength;
-	CmdUnit.u.ANDES.CmdPayload = &coexAFH;
+	CmdUnit.u.ANDES.CmdPayload = (u8 *) &coexAFH;
 	
 	CmdUnit.u.ANDES.NeedRsp = FALSE;
 	CmdUnit.u.ANDES.NeedWait = FALSE;

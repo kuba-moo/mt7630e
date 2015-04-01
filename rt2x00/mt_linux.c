@@ -939,7 +939,7 @@ ra_dma_addr_t RtmpDrvPciMapSingle(
 
 ra_dma_addr_t RtmpDrvPciUnMapSingle(
 	IN struct rt2x00_dev *rt2x00dev,
-	IN VOID *ptr,
+	IN ra_dma_addr_t ptr,
 	IN size_t size,
 	IN INT direction)
 {

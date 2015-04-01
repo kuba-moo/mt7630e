@@ -4288,7 +4288,7 @@ static void rt2800_config_channel_rf7630(struct rt2x00_dev *rt2x00dev,
 
 
 		/* Internal PA */
-	for(i = 0; i < MT76x0_RF_INT_PA_RegTb_Size; i++)
+	for(i = 0; sizeof(MT76x0_RF_INT_PA_RegTb) && i < MT76x0_RF_INT_PA_RegTb_Size; i++)
 	{
 			if (MT76x0_RF_INT_PA_RegTb[i].BwBand & RfBand)
 			{

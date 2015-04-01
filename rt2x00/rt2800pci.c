@@ -1250,31 +1250,6 @@ static bool rt2800pci_txdone_release_entries(struct queue_entry *entry,
 	return true;
 }
 
- #define woody_kfifo_get(fifo, val) \
- ({ \
-         typeof((fifo) + 1) __tmp = (fifo); \
-         typeof(__tmp->ptr) __val = (val); \
-         unsigned int __ret; \
-         size_t __recsize = sizeof(*__tmp->rectype); \
-        struct __kfifo *__kfifo = &__tmp->kfifo; \
-	{ \
-                 __ret = !kfifo_is_empty(__tmp); \
-                 if ((__is_kfifo_ptr(__tmp)))	\
-				 	printk("__is_kfifo_ptr(1)\n");	\
-                 if (__ret) { \
-             			 printk("((typeof(__tmp->type))__kfifo->data)[%d]=0x%x\n",__kfifo->out & __tmp->kfifo.mask, ((typeof(__tmp->type))__kfifo->data)[__kfifo->out & __tmp->kfifo.mask]);	\				 	
-				*(typeof(__tmp->type))__val = \	 	
-                         (__is_kfifo_ptr(__tmp) ? \
-                                ((typeof(__tmp->type))__kfifo->data) : \
-                                (__tmp->buf) \
-                                )[__kfifo->out & __tmp->kfifo.mask]; \
-                         smp_wmb(); \
-                         __kfifo->out++; \
-                } \	
-              } \    
-              __ret; \
- 	})
- 	
 static bool rt2800pci_txdone(struct rt2x00_dev *rt2x00dev)
 {
 	struct data_queue *queue;
@@ -1472,34 +1447,6 @@ static void rt2800pci_autowake_tasklet(unsigned long data)
 	}
 }
 
-
- #define woody_kfifo_put(fifo, val) \
- ({ \
-         typeof((fifo) + 1) __tmp = (fifo); \
-         typeof(*__tmp->const_type) __val = (val); \
-         unsigned int __ret; \
-         size_t __recsize = sizeof(*__tmp->rectype); \
-        struct __kfifo *__kfifo = &__tmp->kfifo; \
-		printk("__recsize =%d\n",__recsize);	\
-	{ \
-                 __ret = !kfifo_is_full(__tmp); \
-                 printk("__ret =%d\n",__ret);	\
-                 if ((__is_kfifo_ptr(__tmp)))	\
-				 	printk("__is_kfifo_ptr\n");	\
-			printk("value=0x%x, (typeof(*__tmp->type))__val = 0x%x\n", val, (typeof(*__tmp->type))__val);	\		 	
-                 if (__ret) { \
-                         (__is_kfifo_ptr(__tmp) ? \
-                         ((typeof(__tmp->type))__kfifo->data) : \
-                         (__tmp->buf) \
-                         )[__kfifo->in & __tmp->kfifo.mask] = \
-                                 (typeof(*__tmp->type))__val; \
-                         smp_wmb(); \
-printk("((typeof(__tmp->type))__kfifo->data)[%d]=0x%x\n",__kfifo->in & __tmp->kfifo.mask, ((typeof(__tmp->type))__kfifo->data)[__kfifo->in & __tmp->kfifo.mask]);	\				 	                 
-                         __kfifo->in++; \
-                } \	
-              } \    
-              __ret; \
- 	})
 static void rt2800pci_txstatus_interrupt(struct rt2x00_dev *rt2x00dev)
 {
 	u32 status;

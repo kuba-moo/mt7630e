@@ -1728,13 +1728,12 @@ void MT76x0_WLAN_ChipOnOff(
 
 	if (bOn == 1)
 	{
-		unsigned int index = 0;		
-		
-		
 		CmbCtrl.word = 0;
 				
 		do
 		{
+			unsigned int index = 0;
+
 			do 
 			{
 				rt2x00dev_pci_register_read(rt2x00dev, CMB_CTRL, &CmbCtrl.word);

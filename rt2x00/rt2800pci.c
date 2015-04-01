@@ -1076,7 +1076,7 @@ static void rt2800pci_fill_rxdone(struct queue_entry *entry,
 					printk("crc RXD_W3_CIPHER_ERROR\n");
 
 				if (pRxInfo->Decrypted) {
-					printk("Decrypted\n");
+					vend_dbg("Decrypted\n");
 					/*
 					 * Hardware has stripped IV/EIV data from 802.11 frame during
 					 * decryption. Unfortunately the descriptor doesn't contain
@@ -1258,7 +1258,7 @@ static bool rt2800pci_txdone(struct rt2x00_dev *rt2x00dev)
 	int max_tx_done = 16;
 	TX_STA_FIFO_STRUC	StaFifo;
 	while (kfifo_get(&rt2x00dev->txstatus_fifo, &status)) {
-		printk("rt2800pci_txdone status = 0x%x\n",status);
+		vend_dbg("rt2800pci_txdone status = 0x%x\n",status);
 		StaFifo.word = status;
 		qid =  (UCHAR)StaFifo.field.PidType;//rt2x00_get_field32(status, TX_STA_FIFO_PID_QUEUE);
 			
@@ -1273,7 +1273,7 @@ static bool rt2800pci_txdone(struct rt2x00_dev *rt2x00dev)
 			break;
 		}
 
-		printk("rt2800pci_txdone qid = 0x%x\n",qid);
+		vend_dbg("rt2800pci_txdone qid = 0x%x\n",qid);
 		queue = rt2x00queue_get_tx_queue(rt2x00dev, qid);
 		if (unlikely(queue == NULL)) {
 			/*
@@ -1483,7 +1483,7 @@ static void rt2800pci_txstatus_interrupt(struct rt2x00_dev *rt2x00dev)
 		}		
 #endif
 		Fifi_Status.field.PidType = (Fifi_Status_ext.field.TX_PKT_ID == 5)? 0:Fifi_Status_ext.field.TX_PKT_ID;
-		printk("0x%x (status)\n",Fifi_Status.word);
+		vend_dbg("0x%x (status)\n",Fifi_Status.word);
 		status = Fifi_Status.word;
 
 		//woody_kfifo_put(&rt2x00dev->txstatus_fifo, &status);

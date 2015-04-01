@@ -1437,6 +1437,11 @@ typedef	union GNU_PACKED _RXWI_STRUC {
 	do { } while (0)
 #endif /* CONFIG_RT2X00_DEBUG */
 
+#if 0
+#define vend_dbg(fmt...) printk(fmt)
+#else
+#define vend_dbg(fmt...) do {} while(0)
+#endif
 
 #define WARNING(__dev, __msg, __args...) \
 	DEBUG_PRINTK(__dev, KERN_WARNING, "Warning", __msg, ##__args)

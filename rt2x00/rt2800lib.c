@@ -2308,10 +2308,10 @@ int rt2800_rfkill_poll(struct rt2x00_dev *rt2x00dev)
 {
 	u32 reg;
 
-	printk("===>%s:MT7630\n", __FUNCTION__);
+	vend_dbg("===>%s:MT7630\n", __FUNCTION__);
 	if (rt2x00_rt(rt2x00dev, RT3290) || rt2x00_rt(rt2x00dev, MT7630)) {
 		rt2800_register_read(rt2x00dev, WLAN_FUN_CTRL, &reg);
-		printk("rt2800_rfkill_poll WLAN_FUN_CTRL=0x%x\n",reg);
+		vend_dbg("rt2800_rfkill_poll WLAN_FUN_CTRL=0x%x\n",reg);
 		return rt2x00_get_field32(reg, WLAN_GPIO_IN_BIT0);
 	} else {
 		rt2800_register_read(rt2x00dev, GPIO_CTRL, &reg);

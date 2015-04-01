@@ -568,7 +568,12 @@ int rt2x00mac_sta_remove(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
 }
 EXPORT_SYMBOL_GPL(rt2x00mac_sta_remove);
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 19, 0)
 void rt2x00mac_sw_scan_start(struct ieee80211_hw *hw)
+#else
+void rt2x00mac_sw_scan_start(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
+			     const u8 *mac_addr)
+#endif
 {
 	struct rt2x00_dev *rt2x00dev = hw->priv;
 	set_bit(DEVICE_STATE_SCANNING, &rt2x00dev->flags);
@@ -576,7 +581,12 @@ void rt2x00mac_sw_scan_start(struct ieee80211_hw *hw)
 }
 EXPORT_SYMBOL_GPL(rt2x00mac_sw_scan_start);
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 19, 0)
 void rt2x00mac_sw_scan_complete(struct ieee80211_hw *hw)
+#else
+void rt2x00mac_sw_scan_complete(struct ieee80211_hw *hw,
+				struct ieee80211_vif *vif)
+#endif
 {
 	struct rt2x00_dev *rt2x00dev = hw->priv;
 	clear_bit(DEVICE_STATE_SCANNING, &rt2x00dev->flags);
@@ -749,7 +759,12 @@ void rt2x00mac_rfkill_poll(struct ieee80211_hw *hw)
 }
 EXPORT_SYMBOL_GPL(rt2x00mac_rfkill_poll);
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 16, 0)
 void rt2x00mac_flush(struct ieee80211_hw *hw, u32 queues, bool drop)
+#else
+void rt2x00mac_flush(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
+		     u32 queues, bool drop)
+#endif
 {
 	struct rt2x00_dev *rt2x00dev = hw->priv;
 	struct data_queue *queue;

@@ -1370,6 +1370,7 @@ done:
 	return ret;
 }
 
+#if 0
 static int rt2800_enable_wlan_mt7630(struct rt2x00_dev *rt2x00dev)
 {
 	u32 reg;
@@ -1441,6 +1442,7 @@ static int rt2800_enable_wlan_mt7630(struct rt2x00_dev *rt2x00dev)
 		printk("<== rt2800_enable_wlan_mt7630():  WlanFunCtrl = 0x%x\n", reg);
 	return 0;
 }
+#endif
 
 static int rt2800_enable_wlan_rt3290(struct rt2x00_dev *rt2x00dev)
 {
@@ -5949,6 +5951,7 @@ static int rt2800_init_registers(struct rt2x00_dev *rt2x00dev)
 	return 0;
 }
 
+#if 0
 static int rt2800_wait_bbp_rf_MT7630_ready(struct rt2x00_dev *rt2x00dev)
 {
 	unsigned int i;
@@ -5968,6 +5971,7 @@ static int rt2800_wait_bbp_rf_MT7630_ready(struct rt2x00_dev *rt2x00dev)
 	ERROR(rt2x00dev, "BBP/RF register access failed, aborting.\n");
 	return -EACCES;
 }
+#endif
 
 static int rt2800_wait_bbp_rf_ready(struct rt2x00_dev *rt2x00dev)
 {
@@ -7542,6 +7546,7 @@ typedef	union _MAC_DW1_STRUC {
 	u32 word;
 }	MAC_DW1_STRUC;
 
+#if 0
 static void MT76x0_CalculateTxpower(
 	u8 bMinus,
 	u16 InputTxpower,
@@ -7614,6 +7619,7 @@ static void MT76x0_CalculateTxpower(
 	*pTxpower1 = t1;
 	*pTxpower2 = t2;
 }
+#endif
 
 #define PowerSafeCID		1
 #define PowerRadioOffCID	2

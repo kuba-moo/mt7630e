@@ -52,6 +52,7 @@ void MT_2800pci_hex_dump(char *str, unsigned char *pSrcBufVA, u32 SrcBufLen);
 extern int AsicWaitPDMAIdle(struct rt2x00_dev *rt2x00dev, int round, int wait_us);
 extern void RTMPEnableRxTx(struct rt2x00_dev *rt2x00dev);
 
+#if 0
 static void rt2860_int_disable(struct rt2x00_dev *rt2x00dev, unsigned int mode)
 {
 	u32 regValue;
@@ -70,6 +71,7 @@ static void rt2860_int_enable(struct rt2x00_dev *rt2x00dev, unsigned int mode)
 	rt2x00mmio_register_write(rt2x00dev, INT_MASK_CSR, regValue);     /* 1:enable */
 
 }
+#endif
 
 /*
  * Allow hardware encryption to be disabled.

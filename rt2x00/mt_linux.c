@@ -2142,7 +2142,7 @@ void Set_BtDump_Proc(
     		buf = 0;
 		RTMP_IO_READ32(rt2x00dev, 0x80000+offset, &buf);	
 		//printk("0x%X:= 0x%x :\n",0x80000+offset, buf); 
-		file->f_op->write(file, &buf, 4, &file->f_pos);
+		file->f_op->write(file, (u8 *) &buf, 4, &file->f_pos);
 	}
 
 	RTMP_IO_WRITE32(rt2x00dev, PCIE_REMAP_BASE4, 0x90000);
@@ -2152,7 +2152,7 @@ void Set_BtDump_Proc(
     		buf = 0;
 		RTMP_IO_READ32(rt2x00dev, 0x90000+offset, &buf);	
 		//printk("0x%X:= 0x%x :\n",0x80000+offset, buf); 
-		file->f_op->write(file, &buf, 4, &file->f_pos);
+		file->f_op->write(file, (u8 *) &buf, 4, &file->f_pos);
 	}
 
 	RTMP_IO_WRITE32(rt2x00dev, PCIE_REMAP_BASE4, 0xa0000);
@@ -2162,7 +2162,7 @@ void Set_BtDump_Proc(
     		buf = 0;
 		RTMP_IO_READ32(rt2x00dev, 0xa0000+offset, &buf);	
 		//printk("0x%X:= 0x%x :\n",0x80000+offset, buf); 
-		file->f_op->write(file, &buf, 4, &file->f_pos);
+		file->f_op->write(file, (u8 *) &buf, 4, &file->f_pos);
 	}
 	
 	RTMP_IO_WRITE32(rt2x00dev, PCIE_REMAP_BASE4, 0x00);

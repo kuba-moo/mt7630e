@@ -1,0 +1,48 @@
+*******************************************************************************
+            Mediatek MT7630E Combo Linux Driver User Guide
+*******************************************************************************
+1. Component
+
+* rt2x00: Wi-Fi driver source code
+* btloader: Bluetooth firmware loader source code
+* firmware: Firmeare binary code (MT7650E234.bin is for Wi-Fi, mt76x0.bin is for Bluetooth)
+
+2 .User Environment
+
+* OS version: Ubuntu 13.04 LTS
+* Linux kernel version: 3.13 and 3.14
+
+3.Installation
+
+ Wi-Fi:
+  * Copy Wi-Fi firmware (MT7650E234.bin) to /lib/firmware
+  * Open Terminal and switch to root
+    sudo su
+  * Switch path to rt2x00 folder
+  * Compile the drivers to kernel object (.ko)
+  
+    make clean
+    make
+    
+  * Insert kernel object (.ko)
+  
+    ./load.sh
+    
+  
+ Bluetooth
+
+  * Copy Wi-Fi firmware (mt76x0.bin) to /lib/firmware
+  * Open Terminal and switch to root
+    sudo su
+  * Switch path to BTLoader folder
+  * Compile the drivers to kernel object (.ko)
+  
+    make clean
+    make
+    
+  * Insert kernel object (.ko)
+  
+    insmod ./mt76xx.ko
+    
+  
+  

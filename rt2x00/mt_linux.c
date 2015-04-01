@@ -774,7 +774,7 @@ VOID PrepareProtectionFrame(
 		//Beacon address from D000
             FrameAddress = 0xD000 + (0x200*(Number-2));
       }
-      printk("Protection FrameAddress =%x \n",FrameAddress);
+      printk("Protection FrameAddress =%lx \n",FrameAddress);
 	//
 	// Move TXWI and frame content to on-chip memory
 	//
@@ -1069,7 +1069,7 @@ VOID SendAndesCoexFrameInfo(
     
 	coexProtectionFrameInfoLength = sizeof(coexProtectionFrameInfo);
 
-	printk("%s: Triggernumber = %d, Valid = %d, NodeType = %d, BssHashID = %d, , FrameType = %d, CmdParametersLength = %d\n", 
+	printk("%s: Triggernumber = %lu, Valid = %lu, NodeType = %lu, BssHashID = %lu, , FrameType = %lu, CmdParametersLength = %d\n",
 		__FUNCTION__, 
 		coexProtectionFrameInfo.Triggernumber, 
 		coexProtectionFrameInfo.Valid, 
@@ -1831,7 +1831,7 @@ VOID SendLEDCmd(
 	
         // workaround patch
 	
-	printk("%s: Mode:%d, Para: %d-->\n", __FUNCTION__, LEDMode, Para);
+	printk("%s: Mode:%lu, Para: %lu-->\n", __FUNCTION__, LEDMode, Para);
 
 	LEDParameter[0] = LEDMode;
 	LEDParameter[1] = Para;	

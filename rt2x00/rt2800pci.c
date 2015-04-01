@@ -944,6 +944,8 @@ static void rt2800pci_write_tx_desc(struct queue_entry *entry,
 	 */
 	if (rt2x00_rt(rt2x00dev, MT7630))
 	{
+		struct _TXINFO_NMAC_PKT *nmac_info;
+
 		pTxD->SDPtr0 = skbdesc->skb_dma;
 		pTxD->SDLen0 = TXWI_DESC_SIZE_7630;	/* include padding*/
 		pTxD->SDPtr1 = skbdesc->skb_dma + TXWI_DESC_SIZE_7630;
@@ -952,7 +954,6 @@ static void rt2800pci_write_tx_desc(struct queue_entry *entry,
 		pTxD->LastSec1 =  !test_bit(ENTRY_TXD_MORE_FRAG, &txdesc->flags);
 		//pTxD->DMADONE= 0;
 		pTxD->Burst= test_bit(ENTRY_TXD_BURST, &txdesc->flags);
-		struct _TXINFO_NMAC_PKT *nmac_info;
 		nmac_info = (struct _TXINFO_NMAC_PKT *)pTxInfo;
 		nmac_info->pkt_80211 = 1;
 		nmac_info->info_type = 0;

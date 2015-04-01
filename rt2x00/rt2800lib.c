@@ -5087,8 +5087,8 @@ void rt2800_vco_calibration(struct rt2x00_dev *rt2x00dev)
 	//printk("===>%s:MT7630\n", __FUNCTION__);
 	if (rt2x00_rt(rt2x00dev, MT7630))
 	{
-		return;
 		u32 reg;
+		return;
 		reg=0;
 		rt2800_register_read(rt2x00dev, 0x0208, &reg);
 		printk(" rt2800_vco_calibration 0x0208 = 0x%x\n",reg);
@@ -7337,7 +7337,8 @@ static void rt2800_init_rfcsr(struct rt2x00_dev *rt2x00dev)
 {
 	u32 IdReg;
 	u8 RFValue;
-	
+	unsigned char BBPCurrentBW = BW_20;
+
 	if (rt2800_is_305x_soc(rt2x00dev)) {
 		rt2800_init_rfcsr_305x_soc(rt2x00dev);
 		return;
@@ -7381,7 +7382,6 @@ static void rt2800_init_rfcsr(struct rt2x00_dev *rt2x00dev)
 						MT76x0_RF_VGA_Channel_0_RegTb[IdReg].Bank);
 		}
 
-		unsigned char BBPCurrentBW = BW_20;
 		for(IdReg = 0; IdReg < MT76x0_RF_BW_Switch_Size; IdReg++)
 		{
 			if (BBPCurrentBW == MT76x0_RF_BW_Switch[IdReg].BwBand)

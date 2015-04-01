@@ -1031,8 +1031,8 @@ static void rt2800pci_fill_rxdone(struct queue_entry *entry,
 	{
 			//MT_2800pci_hex_dump("rxd", rxd, 16);
 			unsigned char hw_rx_info[16];
-			unsigned char hw_fce[4];
-			__le32 *destrxd = NULL;
+			//unsigned char hw_fce[4];
+			//__le32 *destrxd = NULL;
 
 			//memcpy(&hw_rx_info[0], rxd,12);
 			memcpy(&hw_rx_info[0], rxd,16);
@@ -1384,10 +1384,6 @@ static void rt2800pci_txstatus_tasklet(unsigned long data)
 static void rt2800pci_tx8damdone_tasklet(unsigned long data)
 {
 	struct rt2x00_dev *rt2x00dev = (struct rt2x00_dev *)data;
-	unsigned long flags;
-	INT_SOURCE_CSR_STRUC IntSource;
-	BOOLEAN bReschedule = 0;
-
 
 	if (RTMPHandleTxRing8DmaDoneInterrupt(rt2x00dev))
 		tasklet_schedule(&rt2x00dev->tx8damdone_tasklet);

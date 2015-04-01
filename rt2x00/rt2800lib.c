@@ -4101,10 +4101,8 @@ static void rt2800_config_channel_rf7630(struct rt2x00_dev *rt2x00dev,
 	u32 RegValue = 0;
 	u32 Index;
 	u32 Value = 0, rf_phy_mode, rf_bw = RF_BW_20;
-	unsigned char bbp_ch_idx;
 	unsigned char RfValue = 0;
 	u32 IdReg = 0, MacReg = 0, i = 0, RfBand = 0;
-	u16 eeprom;
 	MT76x0_FREQ_ITEM *pMT76x0_freq_item = NULL;
 	unsigned char BBPCurrentBW;
 	printk("==>rt2800_config_channel_rf7630 ch%d\n",rf->channel);
@@ -5308,7 +5306,7 @@ void rt2800_link_tuner(struct rt2x00_dev *rt2x00dev, struct link_qual *qual,
 		       const u32 count)
 {
 	u8 vgc;
-	unsigned int i;
+
 	if (rt2x00_rt(rt2x00dev, MT7630))
 	{
 		NICUpdateRawCounters(rt2x00dev);		
@@ -7739,8 +7737,6 @@ int rt2800_enable_radio(struct rt2x00_dev *rt2x00dev)
 	u32 reg;
 	u16 word;
 	u8 *mac;
-	MAC_DW0_STRUC csr2;
-	MAC_DW1_STRUC csr3;
 	/*
 	 * Initialize all registers.
 	 */
@@ -9118,7 +9114,7 @@ EXPORT_SYMBOL_GPL(rt2800_get_survey);
 
 void mt7630_show_rf(struct rt2x00_dev *rt2x00dev)
 {
-		unsigned char regRF = 0, rf_bank = 0;
+		unsigned char regRF = 0;
 		int	rfId, maxRFIdx, bank_Id;
 		maxRFIdx = 127;
 		for (bank_Id = 0; bank_Id <= 4; bank_Id++)

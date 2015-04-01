@@ -153,10 +153,6 @@ int rt2x00pci_probe(struct pci_dev *pci_dev, const struct rt2x00_ops *ops)
 
 	if (rt2x00_rt(rt2x00dev, MT7630))
 	{
-
-		u32 MacValue;
-		u32 tmp=0;
-
 		rt2x00dev->TXWISize=20;
 		rt2x00dev->bscan=0;
 

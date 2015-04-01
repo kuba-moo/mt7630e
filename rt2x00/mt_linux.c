@@ -166,7 +166,6 @@ INT PCIKickOutCmd(
 {
 	NDIS_STATUS Status = NDIS_STATUS_SUCCESS;
 	ULONG	IrqFlags = 0;
-	BOOLEAN bIntContext = FALSE;
 	ULONG FreeNum;
 	UINT32 SwIdx = 0, SrcBufPA;
 	UCHAR *pSrcBufVA;
@@ -372,9 +371,7 @@ static INT desc_ring_alloc(struct rt2x00_dev *rt2x00dev, RTMP_DMABUF *pDescRing,
 NDIS_STATUS	RTMPAllocTxRxRingMemory(struct rt2x00_dev *rt2x00dev)
 {
 	NDIS_STATUS Status = NDIS_STATUS_SUCCESS;
-	INT num;
-	ULONG ErrorValue = 0;
-	
+
 	printk("-->RTMPAllocTxRxRingMemory\n");
 	do
 	{
@@ -397,13 +394,11 @@ EXPORT_SYMBOL_GPL(RTMPAllocTxRxRingMemory);
 
 NDIS_STATUS RTMPInitTxRxRingMemory(struct rt2x00_dev *rt2x00dev)
 {
-	INT num, index;
+	INT index;
 	ULONG RingBasePaHigh, RingBasePaLow;
 	VOID *RingBaseVa;
-	RTMP_DMABUF *pDmaBuf, *pDescRing;
-	PNDIS_PACKET pPacket;
+	RTMP_DMABUF *pDescRing;
 	TXD_STRUC *pTxD;
-	ULONG ErrorValue = 0;
 	NDIS_STATUS Status = NDIS_STATUS_SUCCESS;
 
 
@@ -451,8 +446,7 @@ NDIS_STATUS RTMPInitTxRxRingMemory(struct rt2x00_dev *rt2x00dev)
 VOID AsicInitTxRxRing(struct rt2x00_dev *rt2x00dev)
 {
 	UINT32 addr;
-	INT i, offset;
-	
+
 	/*
 		Write Tx Ring base address registers 
 		
@@ -506,10 +500,8 @@ int	RTMPHandleTxRing8DmaDoneInterrupt(
 	PNDIS_PACKET pPacket;
 /*	int 		 i;*/
 	UCHAR	FREE = 0;
-	int ret = 0;
 	RTMP_CTRL_RING *pCtrlRing = &rt2x00dev->CtrlRing;
-	UINT8 TXWISize = rt2x00dev->TXWISize;
-	
+
 	RTMP_IO_READ32(rt2x00dev, TX_CTRL_DIDX, &pCtrlRing->TxDmaIdx);
 	while (pCtrlRing->TxSwFreeIdx!= pCtrlRing->TxDmaIdx)
 	{
@@ -687,7 +679,6 @@ VOID PrepareProtectionFrame(
        ULONG                  FrameAddress = 0;
        BOOLEAN 		Ack = FALSE;
 
-	TXINFO_STRUC *pTxInfo;
 	TXWI_STRUC *pTxWI;
 
 
@@ -1216,8 +1207,7 @@ VOID MT76x0_Calibration(
 	IN BOOLEAN bFullCal)
 {
 	UINT32 MacReg = 0, reg_val = 0, reg_tx_alc = 0;
-	UINT32 Value = 0;
-	
+
 	printk("%s - Channel = %d, bPowerOn = %d, bFullCal = %d\n", __FUNCTION__, Channel, bPowerOn, bFullCal);
 
 //#ifdef RTMP_MAC_PCI
@@ -1227,8 +1217,6 @@ VOID MT76x0_Calibration(
 
 	if (bPowerOn)
 	{
-		UCHAR RFValue = 0;
-		
 		/*
 			Do Power on calibration.
 			The calibration sequence is very important, please do NOT change it.
@@ -1823,7 +1811,7 @@ VOID SendLEDCmd(
 	IN ULONG	LEDMode,
 	IN ULONG	Para)
 {
-	CHAR *Pos, *pBuf;
+	CHAR *pBuf;
 	ULONG	LEDParameter[2] = {0};
 	INT ret;
 	struct CMD_UNIT CmdUnit;
@@ -2125,8 +2113,6 @@ void Set_BtDump_Proc(
     mm_segment_t old_fs;
     struct file *file = NULL;
 
-    UINT16 BaseOffset;
-    UINT16 ReadOffset;
     UINT32 offset,buf;
 	//unsigned char buf[4] = {0};
 

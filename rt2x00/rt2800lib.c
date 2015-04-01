@@ -38,6 +38,7 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/slab.h>
+#include <linux/version.h>
 
 #include "rt2x00.h"
 #include "rt2800lib.h"
@@ -9101,6 +9102,7 @@ int rt2800_get_survey(struct ieee80211_hw *hw, int idx,
 	rt2800_register_read(rt2x00dev, CH_BUSY_STA_SEC, &busy_ext);
 
 	if (idle || busy) {
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 0, 0)
 		survey->filled = SURVEY_INFO_CHANNEL_TIME |
 				 SURVEY_INFO_CHANNEL_TIME_BUSY |
 				 SURVEY_INFO_CHANNEL_TIME_EXT_BUSY;
@@ -9108,6 +9110,15 @@ int rt2800_get_survey(struct ieee80211_hw *hw, int idx,
 		survey->channel_time = (idle + busy) / 1000;
 		survey->channel_time_busy = busy / 1000;
 		survey->channel_time_ext_busy = busy_ext / 1000;
+#else
+		survey->filled = SURVEY_INFO_TIME |
+				 SURVEY_INFO_TIME_BUSY |
+				 SURVEY_INFO_TIME_EXT_BUSY;
+
+		survey->time = (idle + busy) / 1000;
+		survey->time_busy = busy / 1000;
+		survey->time_ext_busy = busy_ext / 1000;
+#endif
 	}
 
 	if (!(hw->conf.flags & IEEE80211_CONF_OFFCHANNEL))

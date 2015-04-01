@@ -1213,6 +1213,7 @@ static void rt2800_rfcsr_read(struct rt2x00_dev *rt2x00dev,
 	if (rt2x00_rt(rt2x00dev, MT7630))
 	{
 		//printk("MT7630 use new rfcsr read RF=%d\n",word);
+		*value = 0xff;
 		return;
 	}
 	

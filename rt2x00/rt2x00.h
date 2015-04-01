@@ -476,7 +476,7 @@ typedef	union _TX_STA_FIFO_EXT_STRUC {
 		ULONG Reserved:16;
 	} field;
 
-	ULONG word;
+	UINT word;
 } TX_STA_FIFO_EXT_STRUC;
 
 

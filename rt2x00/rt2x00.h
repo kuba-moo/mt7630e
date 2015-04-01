@@ -1443,7 +1443,7 @@ typedef	union GNU_PACKED _RXWI_STRUC {
 	DEBUG_PRINTK(__dev, KERN_NOTICE, "Notice", __msg, ##__args)
 #define INFO(__dev, __msg, __args...) \
 	DEBUG_PRINTK(__dev, KERN_INFO, "Info", __msg, ##__args)
-#define DEBUG(__dev, __msg, __args...) \
+#define DBG(__dev, __msg, __args...) \
 	DEBUG_PRINTK(__dev, KERN_DEBUG, "Debug", __msg, ##__args)
 #define EEPROM(__dev, __msg, __args...) \
 	DEBUG_PRINTK(__dev, KERN_DEBUG, "EEPROM recovery", __msg, ##__args)

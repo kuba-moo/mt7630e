@@ -1273,7 +1273,7 @@ static void rt2800_rf_write(struct rt2x00_dev *rt2x00dev,
 
 
 
-static void rt2800_MT7630_rfcsr_write(struct rt2x00_dev *rt2x00dev,
+static int rt2800_MT7630_rfcsr_write(struct rt2x00_dev *rt2x00dev,
 			       const u8 word, const u8 value,const u8 bank)
 {
 	RLT_RF_CSR_CFG rfcsr = { { 0 } };
@@ -1316,7 +1316,7 @@ done:
 }
 
 
-static void rt2800_MT7630_rfcsr_read(struct rt2x00_dev *rt2x00dev,
+static int rt2800_MT7630_rfcsr_read(struct rt2x00_dev *rt2x00dev,
 			       const u8 word, u8 *value,const u8 bank)
 {
 	RLT_RF_CSR_CFG rfcsr = { { 0 } };
@@ -7427,7 +7427,7 @@ static void rt2800_init_rfcsr(struct rt2x00_dev *rt2x00dev)
 		RFValue = ((RFValue & ~0x80) | 0x80); 
 		rt2800_MT7630_rfcsr_write(rt2x00dev, RF_R04, RFValue, RF_BANK0);
 		printk("%s(): Init RF Registers MT7630 complete\n", __FUNCTION__);
-		return 0;
+		return;
 	}
 	
 	switch (rt2x00dev->chip.rt) {

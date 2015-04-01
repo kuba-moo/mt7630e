@@ -542,6 +542,8 @@ int	RTMPHandleTxRing8DmaDoneInterrupt(
 		RTMP_IO_READ32(rt2x00dev, TX_CTRL_DIDX, &pCtrlRing->TxDmaIdx);
 
 	}
+
+	return 0;
 }
 EXPORT_SYMBOL_GPL(RTMPHandleTxRing8DmaDoneInterrupt);
 
@@ -944,6 +946,8 @@ ra_dma_addr_t RtmpDrvPciUnMapSingle(
 		struct pci_dev *pci_dev = to_pci_dev(rt2x00dev->dev);
 		linux_pci_unmap_single(pci_dev,
 					ptr, size, direction);
+
+		return 0;
 }
 
 VOID TDDFDDExclusiveRequest(
@@ -1550,7 +1554,7 @@ void MT7630_rfcsr_read(struct rt2x00_dev *rt2x00dev,
 	ret = 0;
 
 done:
-	return ret;
+	return;
 }
 
 void MT7630_rfcsr_write(struct rt2x00_dev *rt2x00dev,
@@ -1592,7 +1596,7 @@ void MT7630_rfcsr_write(struct rt2x00_dev *rt2x00dev,
 	ret = 0;
 
 done:
-	return ret;
+	return;
 }
 
 void MT76x0_VCO_CalibrationMode3(
@@ -1826,7 +1830,7 @@ VOID SendLEDCmd(
 	os_alloc_mem(rt2x00dev, (UCHAR **)&pBuf, 8);
 	if (pBuf == NULL)
 	{
-		return NDIS_STATUS_RESOURCES;
+		return;
 	}
 	
         // workaround patch
@@ -1850,7 +1854,7 @@ VOID SendLEDCmd(
 	ret = AsicSendCmdToAndes(rt2x00dev, &CmdUnit);
 
 	RTMPusecDelay(500);
-	return ret;
+	return;
 
 }
 
@@ -1970,7 +1974,7 @@ VOID SendAndesWLANStatus(
 	ret = AsicSendCmdToAndes(rt2x00dev, &CmdUnit);
 
 	RTMPusecDelay(500);
-	return ret;
+	return;
 	
 }
 EXPORT_SYMBOL_GPL(SendAndesWLANStatus);
@@ -2128,7 +2132,7 @@ void Set_BtDump_Proc(
     {
         printk("error occured while opening file /tmp/bt_log_0x00080000_to_0x000A7FFF, exiting...\n");
         set_fs(old_fs);
-        return 0;
+        return;
     }	
 
 	RTMP_IO_WRITE32(rt2x00dev, PCIE_REMAP_BASE4, 0x80000);

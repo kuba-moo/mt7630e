@@ -671,7 +671,7 @@ VOID PrepareProtectionFrame(
 	IN    INT wcid
 )
 {
-       HEADER_802_11	    ProtectionFrame ={0};
+	HEADER_802_11	    ProtectionFrame = {{0}};
 	TXWI_STRUC		    TxWI;
 	UCHAR				*ptr = NULL;
 	UINT				i = 0;
@@ -983,7 +983,7 @@ VOID BtAFHCtl(
 		IN BOOLEAN			Disable)
 {
 	UCHAR Kstart = 0, Kend = 0;
-	BT_FUN_INFO_STRUC btFunInfo={0};
+	BT_FUN_INFO_STRUC btFunInfo = {{0}};
 	
 	if (!((rt2x00_rt(rt2x00dev, MT7630)) || Channel>14))
 		return;

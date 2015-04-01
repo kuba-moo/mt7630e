@@ -133,7 +133,6 @@ int rt2x00queue_map_txskb(struct queue_entry *entry)
 	skbdesc->flags |= SKBDESC_DMA_MAPPED_TX;
 	return 0;
 }
-EXPORT_SYMBOL_GPL(rt2x00queue_map_txskb);
 
 void rt2x00queue_unmap_skb(struct queue_entry *entry)
 {
@@ -150,7 +149,6 @@ void rt2x00queue_unmap_skb(struct queue_entry *entry)
 		skbdesc->flags &= ~SKBDESC_DMA_MAPPED_TX;
 	}
 }
-EXPORT_SYMBOL_GPL(rt2x00queue_unmap_skb);
 
 void rt2x00queue_free_skb(struct queue_entry *entry)
 {
@@ -900,7 +898,6 @@ bool rt2x00queue_for_each_entry(struct data_queue *queue,
 
 	return false;
 }
-EXPORT_SYMBOL_GPL(rt2x00queue_for_each_entry);
 
 struct queue_entry *rt2x00queue_get_entry(struct data_queue *queue,
 					  enum queue_index index)
@@ -922,7 +919,6 @@ struct queue_entry *rt2x00queue_get_entry(struct data_queue *queue,
 
 	return entry;
 }
-EXPORT_SYMBOL_GPL(rt2x00queue_get_entry);
 
 void rt2x00queue_index_inc(struct queue_entry *entry, enum queue_index index)
 {
@@ -979,7 +975,6 @@ void rt2x00queue_pause_queue(struct data_queue *queue)
 
 	rt2x00queue_pause_queue_nocheck(queue);
 }
-EXPORT_SYMBOL_GPL(rt2x00queue_pause_queue);
 
 void rt2x00queue_unpause_queue(struct data_queue *queue)
 {
@@ -1009,7 +1004,6 @@ void rt2x00queue_unpause_queue(struct data_queue *queue)
 		break;
 	}
 }
-EXPORT_SYMBOL_GPL(rt2x00queue_unpause_queue);
 
 void rt2x00queue_start_queue(struct data_queue *queue)
 {
@@ -1029,7 +1023,6 @@ void rt2x00queue_start_queue(struct data_queue *queue)
 
 	mutex_unlock(&queue->status_lock);
 }
-EXPORT_SYMBOL_GPL(rt2x00queue_start_queue);
 
 void rt2x00queue_stop_queue(struct data_queue *queue)
 {
@@ -1046,7 +1039,6 @@ void rt2x00queue_stop_queue(struct data_queue *queue)
 
 	mutex_unlock(&queue->status_lock);
 }
-EXPORT_SYMBOL_GPL(rt2x00queue_stop_queue);
 
 void rt2x00queue_flush_queue(struct data_queue *queue, bool drop)
 {
@@ -1106,7 +1098,6 @@ void rt2x00queue_flush_queue(struct data_queue *queue, bool drop)
 
 	mutex_unlock(&queue->status_lock);
 }
-EXPORT_SYMBOL_GPL(rt2x00queue_flush_queue);
 
 void rt2x00queue_start_queues(struct rt2x00_dev *rt2x00dev)
 {
@@ -1121,7 +1112,6 @@ void rt2x00queue_start_queues(struct rt2x00_dev *rt2x00dev)
 
 	rt2x00queue_start_queue(rt2x00dev->rx);
 }
-EXPORT_SYMBOL_GPL(rt2x00queue_start_queues);
 
 void rt2x00queue_stop_queues(struct rt2x00_dev *rt2x00dev)
 {
@@ -1140,7 +1130,6 @@ void rt2x00queue_stop_queues(struct rt2x00_dev *rt2x00dev)
 
 	rt2x00queue_stop_queue(rt2x00dev->rx);
 }
-EXPORT_SYMBOL_GPL(rt2x00queue_stop_queues);
 
 void rt2x00queue_flush_queues(struct rt2x00_dev *rt2x00dev, bool drop)
 {
@@ -1151,7 +1140,6 @@ void rt2x00queue_flush_queues(struct rt2x00_dev *rt2x00dev, bool drop)
 
 	rt2x00queue_flush_queue(rt2x00dev->rx, drop);
 }
-EXPORT_SYMBOL_GPL(rt2x00queue_flush_queues);
 
 static void rt2x00queue_reset(struct data_queue *queue)
 {

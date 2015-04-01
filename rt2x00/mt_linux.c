@@ -342,7 +342,6 @@ void RtmpAllocDescBuf(
 	*VirtualAddress = (PVOID)dma_alloc_coherent(rt2x00dev->dev,sizeof(char)*Length, &DmaAddr,GFP_KERNEL);
 	*phy_addr = (NDIS_PHYSICAL_ADDRESS)DmaAddr;
 }
-EXPORT_SYMBOL_GPL(RtmpAllocDescBuf);
 
 static INT desc_ring_alloc(struct rt2x00_dev *rt2x00dev, RTMP_DMABUF *pDescRing, INT size)
 {
@@ -390,7 +389,6 @@ NDIS_STATUS	RTMPAllocTxRxRingMemory(struct rt2x00_dev *rt2x00dev)
 	printk("<-- RTMPAllocTxRxRingMemory, Status=%x\n", Status);
 	return Status;
 }
-EXPORT_SYMBOL_GPL(RTMPAllocTxRxRingMemory);
 
 NDIS_STATUS RTMPInitTxRxRingMemory(struct rt2x00_dev *rt2x00dev)
 {
@@ -491,7 +489,6 @@ VOID AsicInitTxRxRing(struct rt2x00_dev *rt2x00dev)
 					addr, MGMT_RING_SIZE);
 
 }
-EXPORT_SYMBOL_GPL(AsicInitTxRxRing);
 
 int	RTMPHandleTxRing8DmaDoneInterrupt(
 	IN struct rt2x00_dev *rt2x00dev)
@@ -545,7 +542,6 @@ int	RTMPHandleTxRing8DmaDoneInterrupt(
 
 	return 0;
 }
-EXPORT_SYMBOL_GPL(RTMPHandleTxRing8DmaDoneInterrupt);
 
 VOID RTMPFreeNdisPacket(
 	IN VOID *pReserved,
@@ -599,7 +595,6 @@ VOID SendAndesTFSWITCH(
        
 	
 }
-EXPORT_SYMBOL_GPL(SendAndesTFSWITCH);
 
 VOID RTMPWriteTxWI(
 	IN struct rt2x00_dev *rt2x00dev,
@@ -794,7 +789,6 @@ VOID PrepareProtectionFrame(
 		ptr ++;
 	}
 }
-EXPORT_SYMBOL_GPL(PrepareProtectionFrame);
 
 UCHAR CheckAvailableNullFrameSpace(
 	struct rt2x00_dev *rt2x00dev)
@@ -812,7 +806,6 @@ UCHAR CheckAvailableNullFrameSpace(
     return NULLFRAMESPACE;
 
 }
-EXPORT_SYMBOL_GPL(CheckAvailableNullFrameSpace);
 
 VOID FillProtectionFrameSpace(
     IN	struct rt2x00_dev *rt2x00dev,
@@ -831,7 +824,6 @@ VOID FillProtectionFrameSpace(
     rt2x00dev->NullFrameSpace[Triggernumber].FrameType= FrameType;
 
 }
-EXPORT_SYMBOL_GPL(FillProtectionFrameSpace);
 
 VOID EstablishFrameBundle(
 	IN	 struct rt2x00_dev *rt2x00dev,
@@ -873,7 +865,6 @@ VOID EstablishFrameBundle(
   
     
 }
-EXPORT_SYMBOL_GPL(EstablishFrameBundle);
 
 ra_dma_addr_t linux_pci_map_single(void *pPciDev, void *ptr, size_t size, int sd_idx, int direction)
 {
@@ -972,7 +963,6 @@ VOID TDDFDDExclusiveRequest(
     }
     
 }
-EXPORT_SYMBOL_GPL(TDDFDDExclusiveRequest);
 
 
 VOID BtAFHCtl(
@@ -1051,7 +1041,6 @@ VOID BtAFHCtl(
 	// High BT Priority Mode
 	//RTMP_IO_WRITE32(pAd, 0x5c, 0x8000);		
 }
-EXPORT_SYMBOL_GPL(BtAFHCtl);
 
 VOID SendAndesCoexFrameInfo(
 	IN struct rt2x00_dev *rt2x00dev, 
@@ -1101,7 +1090,6 @@ VOID SendAndesCoexFrameInfo(
 	printk("%s: <--\n", __FUNCTION__);
 	
 }
-EXPORT_SYMBOL_GPL(SendAndesCoexFrameInfo);
 
 VOID UpdateAndesNullFrameSpace(
 	IN struct rt2x00_dev *rt2x00dev)
@@ -1118,7 +1106,6 @@ VOID UpdateAndesNullFrameSpace(
     }
 
 }
-EXPORT_SYMBOL_GPL(UpdateAndesNullFrameSpace);
 
 INT AndesFunSetOP(IN struct rt2x00_dev *rt2x00dev, UINT32 FunID, UINT32 Param)
 {
@@ -1157,7 +1144,6 @@ INT AndesFunSetOP(IN struct rt2x00_dev *rt2x00dev, UINT32 FunID, UINT32 Param)
 
 	return NDIS_STATUS_SUCCESS;
 }
-EXPORT_SYMBOL_GPL(AndesFunSetOP);
 
 INT AndesCalibrationOP(IN struct rt2x00_dev *rt2x00dev, UINT32 CalibrationID, UINT32 Param)
 {
@@ -1201,7 +1187,6 @@ INT AndesCalibrationOP(IN struct rt2x00_dev *rt2x00dev, UINT32 CalibrationID, UI
 
 	return NDIS_STATUS_SUCCESS;
 }
-EXPORT_SYMBOL_GPL(AndesCalibrationOP);
 
 VOID MT76x0_Calibration(
 	IN struct rt2x00_dev *rt2x00dev,
@@ -1489,7 +1474,6 @@ VOID MT76x0_Calibration(
 	RTMP_SEM_UNLOCK(&rt2x00dev->CalLock);
 //#endif /* RTMP_MAC_PCI */
 }
-EXPORT_SYMBOL_GPL(MT76x0_Calibration);
 
 void RTMPusecDelay(unsigned long usec)
 {
@@ -1501,7 +1485,6 @@ void RTMPusecDelay(unsigned long usec)
 	if (usec % 50)
 		udelay(usec % 50);
 }
-EXPORT_SYMBOL_GPL(RTMPusecDelay);
 
 void MT7630_rfcsr_read(struct rt2x00_dev *rt2x00dev,
 			       const u8 word, u8 *value,const u8 bank)
@@ -1647,7 +1630,6 @@ void MT76x0_VCO_CalibrationMode3(
 	
 	return;
 }
-EXPORT_SYMBOL_GPL(MT76x0_VCO_CalibrationMode3);
 
 VOID NicGetTxRawCounters(
 	struct rt2x00_dev *rt2x00dev,
@@ -1668,7 +1650,6 @@ VOID NicGetTxRawCounters(
 	rt2x00dev->WlanCounters.RetryCount.u.LowPart += pStaTxCnt1->field.TxRetransmit;
 	rt2x00dev->WlanCounters.FailedCount.u.LowPart += pStaTxCnt0->field.TxFailCount;
 }
-EXPORT_SYMBOL_GPL(NicGetTxRawCounters);
 
 VOID NICUpdateRawCounters(
 	struct rt2x00_dev *rt2x00dev)
@@ -1903,7 +1884,6 @@ VOID dumpTxWI(struct rt2x00_dev *rt2x00dev, TXWI_STRUC *pTxWI)
 	printk("\tMPDUtotalByteCnt=%d\n", pTxWI->TxWIMPDUByteCnt);	
 	printk("\tPID=%d\n", pTxWI->TxWIPacketId);	
 }
-EXPORT_SYMBOL_GPL(dumpTxWI);
 
 
 void hex_dump(char *str, unsigned char *pSrcBufVA, u32 SrcBufLen)
@@ -1921,7 +1901,6 @@ void hex_dump(char *str, unsigned char *pSrcBufVA, u32 SrcBufLen)
 	}
 	printk("\n");
 }
-EXPORT_SYMBOL_GPL(hex_dump);
 
 //
 // SendAndesWLANStatus
@@ -1977,7 +1956,6 @@ VOID SendAndesWLANStatus(
 	return;
 	
 }
-EXPORT_SYMBOL_GPL(SendAndesWLANStatus);
 
 
 //
@@ -2023,7 +2001,6 @@ VOID SendAndesCCUForceMode(
        TDDFDDExclusiveRequest(rt2x00dev, COEX_MODE_RESET);
 	
 }
-EXPORT_SYMBOL_GPL(SendAndesCCUForceMode);
 
 
 //
@@ -2108,7 +2085,6 @@ VOID SendAndesAFH(
 	printk("%s: <--\n", __FUNCTION__);
 	
 }
-EXPORT_SYMBOL_GPL(SendAndesAFH);
 
 void Set_BtDump_Proc(
 	IN 	struct rt2x00_dev *rt2x00dev,
@@ -2168,7 +2144,6 @@ void Set_BtDump_Proc(
 	RTMP_IO_WRITE32(rt2x00dev, PCIE_REMAP_BASE4, 0x00);
 	filp_close(file, NULL);
 }
-EXPORT_SYMBOL_GPL(Set_BtDump_Proc);
 
 
 VOID MLMEHook(
@@ -2200,8 +2175,6 @@ VOID MLMEHook(
     }
 
  }
-EXPORT_SYMBOL_GPL(MLMEHook);
-EXPORT_SYMBOL_GPL(NICUpdateRawCounters);
 MODULE_AUTHOR(DRV_PROJECT);
 MODULE_VERSION(DRV_VERSION);
 MODULE_DESCRIPTION("rt2x00 7630 library");

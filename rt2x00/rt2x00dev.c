@@ -86,7 +86,6 @@ u32 rt2x00lib_get_bssidx(struct rt2x00_dev *rt2x00dev,
 		return 0;
 	return vif->addr[5] & (rt2x00dev->ops->max_ap_intf - 1);
 }
-EXPORT_SYMBOL_GPL(rt2x00lib_get_bssidx);
 
 /*
  * Radio control handlers.
@@ -283,7 +282,6 @@ void rt2x00lib_beacondone(struct rt2x00_dev *rt2x00dev)
 		rt2x00dev->hw, IEEE80211_IFACE_ITER_RESUME_ALL,
 		rt2x00lib_beaconupdate_iter, rt2x00dev);
 }
-EXPORT_SYMBOL_GPL(rt2x00lib_beacondone);
 
 void rt2x00lib_pretbtt(struct rt2x00_dev *rt2x00dev)
 {
@@ -295,14 +293,12 @@ void rt2x00lib_pretbtt(struct rt2x00_dev *rt2x00dev)
 		rt2x00dev->hw, IEEE80211_IFACE_ITER_RESUME_ALL,
 		rt2x00lib_beaconupdate_iter, rt2x00dev);
 }
-EXPORT_SYMBOL_GPL(rt2x00lib_pretbtt);
 
 void rt2x00lib_dmastart(struct queue_entry *entry)
 {
 	set_bit(ENTRY_OWNER_DEVICE_DATA, &entry->flags);
 	rt2x00queue_index_inc(entry, Q_INDEX);
 }
-EXPORT_SYMBOL_GPL(rt2x00lib_dmastart);
 
 void rt2x00lib_dmadone(struct queue_entry *entry)
 {
@@ -310,7 +306,6 @@ void rt2x00lib_dmadone(struct queue_entry *entry)
 	clear_bit(ENTRY_OWNER_DEVICE_DATA, &entry->flags);
 	rt2x00queue_index_inc(entry, Q_INDEX_DMA_DONE);
 }
-EXPORT_SYMBOL_GPL(rt2x00lib_dmadone);
 
 static inline int rt2x00lib_txdone_bar_status(struct queue_entry *entry)
 {
@@ -528,7 +523,6 @@ void rt2x00lib_txdone(struct queue_entry *entry,
 		rt2x00queue_unpause_queue(entry->queue);
 	//spin_unlock_bh(&entry->queue->tx_lock);
 }
-EXPORT_SYMBOL_GPL(rt2x00lib_txdone);
 
 void rt2x00lib_txdone_noinfo(struct queue_entry *entry, u32 status)
 {
@@ -540,7 +534,6 @@ void rt2x00lib_txdone_noinfo(struct queue_entry *entry, u32 status)
 
 	rt2x00lib_txdone(entry, &txdesc);
 }
-EXPORT_SYMBOL_GPL(rt2x00lib_txdone_noinfo);
 
 static u8 *rt2x00lib_find_ie(u8 *data, unsigned int len, u8 ie)
 {
@@ -853,7 +846,6 @@ submit_entry:
 	    test_bit(DEVICE_STATE_ENABLED_RADIO, &rt2x00dev->flags))
 		rt2x00dev->ops->lib->clear_entry(entry);
 }
-EXPORT_SYMBOL_GPL(rt2x00lib_rxdone);
 
 /*
  * Driver initialization handlers.
@@ -1531,7 +1523,6 @@ exit:
 
 	return retval;
 }
-EXPORT_SYMBOL_GPL(rt2x00lib_probe_dev);
 
 void rt2x00lib_remove_dev(struct rt2x00_dev *rt2x00dev)
 {
@@ -1602,7 +1593,6 @@ void rt2x00lib_remove_dev(struct rt2x00_dev *rt2x00dev)
 	if (rt2x00dev->drv_data)
 		kfree(rt2x00dev->drv_data);
 }
-EXPORT_SYMBOL_GPL(rt2x00lib_remove_dev);
 
 /*
  * Device state handlers
@@ -1645,7 +1635,6 @@ int rt2x00lib_suspend(struct rt2x00_dev *rt2x00dev, pm_message_t state)
 
 	return 0;
 }
-EXPORT_SYMBOL_GPL(rt2x00lib_suspend);
 
 int rt2x00lib_resume(struct rt2x00_dev *rt2x00dev)
 {
@@ -1666,7 +1655,6 @@ int rt2x00lib_resume(struct rt2x00_dev *rt2x00dev)
 
 	return 0;
 }
-EXPORT_SYMBOL_GPL(rt2x00lib_resume);
 #endif /* CONFIG_PM */
 
 
@@ -1801,7 +1789,6 @@ void MT76x0_WLAN_ChipOnOff(
 		__FUNCTION__, g_WlanFunCtrl.word, WlanFunCtrl.word);
 #endif
 }
-EXPORT_SYMBOL_GPL(MT76x0_WLAN_ChipOnOff);
 
 int WaitForAsicReady(struct rt2x00_dev *rt2x00dev)
 {

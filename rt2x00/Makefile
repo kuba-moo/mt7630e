@@ -15,9 +15,9 @@ mt7630e-y				+= rt2800pci.o rt2800lib.o rt2x00pci.o
 
 obj-m					+= mt7630e.o
 
-KVERSION:= $(shell uname -r)
+KDIR ?= /lib/modules/`uname -r`/build
 
 all:
-	$(MAKE) -C /lib/modules/$(KVERSION)/build M=$(PWD) modules
+	$(MAKE) -C $(KDIR) M=$(PWD) modules
 clean:
-	$(MAKE) -C /lib/modules/$(KVERSION)/build M=$(PWD) clean
+	$(MAKE) -C $(KDIR) M=$(PWD) clean

@@ -4106,7 +4106,7 @@ static void rt2800_config_channel_rf7630(struct rt2x00_dev *rt2x00dev,
 	u32 Value = 0, rf_phy_mode, rf_bw = RF_BW_20;
 	unsigned char RfValue = 0;
 	u32 IdReg = 0, MacReg = 0, i = 0, RfBand = 0;
-	MT76x0_FREQ_ITEM *pMT76x0_freq_item = NULL;
+	const MT76x0_FREQ_ITEM *pMT76x0_freq_item = NULL;
 	unsigned char BBPCurrentBW;
 	printk("==>rt2800_config_channel_rf7630 ch%d\n",rf->channel);
 	//return;

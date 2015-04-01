@@ -928,7 +928,7 @@ static void rt2800pci_write_tx_desc(struct queue_entry *entry,
 	TXINFO_STRUC *pTxInfo;
 	//printk("==>rt2800pci_write_tx_desc\n");
 
-	pTxD = entry_priv->desc;
+	pTxD = (TXD_STRUC *) entry_priv->desc;
 	pTxInfo = (TXINFO_STRUC *)(entry_priv->desc + sizeof(TXD_STRUC));
 	memset(pTxD, 0, 16);
 	/*
@@ -1039,10 +1039,10 @@ static void rt2800pci_fill_rxdone(struct queue_entry *entry,
 			//memcpy(&hw_rx_info[0], rxd,12);
 			memcpy(&hw_rx_info[0], rxd,16);
 			//memcpy(&hw_fce[0], rxd+12,4);
-			pRxFceInfo = &hw_rx_info[12];
+			pRxFceInfo = (RXFCE_INFO *) &hw_rx_info[12];
 			//destrxd = (__le32 *) entry->skb->data; 	//woody
 			//memcpy(&hw_rx_info[12], destrxd,4);
-			pRxInfo = entry->skb->data;
+			pRxInfo = (RXINFO_STRUC *) entry->skb->data;
 
 			
 			//rxd = &hw_rx_info[0];

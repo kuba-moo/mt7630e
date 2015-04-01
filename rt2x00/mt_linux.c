@@ -799,7 +799,7 @@ EXPORT_SYMBOL_GPL(PrepareProtectionFrame);
 UCHAR CheckAvailableNullFrameSpace(
 	struct rt2x00_dev *rt2x00dev)
 {
-    char iter = 0;
+    int iter = 0;
     for (iter=0; iter < NULLFRAMESPACE; iter++ )
     {
         if ((rt2x00dev->NullFrameSpace[iter].Occupied) == 0 ) 
@@ -1106,7 +1106,7 @@ EXPORT_SYMBOL_GPL(SendAndesCoexFrameInfo);
 VOID UpdateAndesNullFrameSpace(
 	IN struct rt2x00_dev *rt2x00dev)
 {
-    char iter = 0;
+    int iter = 0;
     for (iter=0; iter < NULLFRAMESPACE; iter++ )
     {
         if (rt2x00dev->NullFrameSpace[iter].Occupied != 0 ) 

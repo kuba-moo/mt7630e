@@ -1,6 +1,6 @@
 Official MediaTek MT7630E driver with various fixes and clean-ups.  This driver should work for any recent kernel.
 
-## Compilation
+## MediaTek MT7630E WiFi and Bluetooth drivers
 
 This driver has been modified to work as a single module therefore some of the official instructions (from [ReadMe](ReadMe)) will not work.  Before compilation make sure you have all the packages required by your distro to build modules installed, then proceed as follows:
 
@@ -9,21 +9,37 @@ First clone the repo:
 git clone git@github.com:kuba-moo/mt7630e.git
 cd mt7630e
 ```
-Build the WiFi driver:
+Build the drivers:
 ```
-cd rt2x00/
 make
-cd ../
 ```
-If build was successful there should be a *mt7630e.ko* file inside *rt2x00/* directory.  For next steps you need to be root (use *sudo su*).  Copy the firmware:
+If build was successful there should be two modules present: *rt2x00/mt7630e.ko* and *btloader/mt76xx.ko*.  To install firmware and drivers you need to be root or use *sudo*:
 ```
-cp firmware/Wi-FI/MT7650E234.bin /lib/firmware/
+sudo make install
 ```
-Load the driver:
+Load the drivers:
 ```
-modprobe rt2800pci
-insmod ./rt2x00/mt7630e.ko
+sudo modprobe mt7630e
+sudo modprobe mt76xx
+```
+Drivers should be automatically loaded after reboot.
+
+You can uninstall drivers and firmware by running:
+```
+cd path_to_mt7630e/
+sudo make uninstall
+```
+
+You can also use the driver without installing it.  First copy the firmware:
+```
+sudo cp -v firmware/*/* /lib/firmware/
+```
+then load the drivers manually:
+```
+sudo modprobe rt2800pci
+sudo insmod ./rt2x00/mt7630e.ko
+sudo insmod ./btloader/mt76xx.ko
 ```
 Note: loading rt2800pci will make sure all required modules are present before you load the proper driver. You can *modprobe -r rt2800pci* to remove all unnecessary modules after *mt7630e* was loaded.
 
-For Bluetooth use instructions from [ReadMe](ReadMe).
+For original instructions see [ReadMe](ReadMe).

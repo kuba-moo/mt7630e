@@ -953,11 +953,11 @@ static int usb_send_vendor_hci_cmd(struct usb_device *udev)
 			vendor_hci_cmd, sizeof(struct mtk_hci_tci_cmd), 
 			usb_vendor_hci_cmd_complete, udev);
 	/* debug print urb */
-	printk ("setup_packet in urb: size=%lu\n", sizeof(struct usb_ctrlrequest));
+	printk ("setup_packet in urb: size=%zu\n", sizeof(struct usb_ctrlrequest));
 	for (i=0; i<sizeof(struct usb_ctrlrequest); i++) {
 		printk ("%02x ", *((unsigned char *)urb->setup_packet + i));
 	}
-	printk ("\ntransfer_buffer in urb: size=%lu\n", sizeof(struct mtk_hci_tci_cmd));
+	printk ("\ntransfer_buffer in urb: size=%zu\n", sizeof(struct mtk_hci_tci_cmd));
 	for (i=0; i<sizeof(struct mtk_hci_tci_cmd); i++) {
 		printk ("%02x ", *((unsigned char *)urb->transfer_buffer + i));
 	}

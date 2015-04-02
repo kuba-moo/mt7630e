@@ -13,9 +13,9 @@ Build the drivers:
 ```
 make
 ```
-If build was successful there should be two modules present: *rt2x00/mt7630e.ko* and *btloader/mt76xx.ko*.  To install firmware and drivers you need to be root or use *sudo*:
+If build was successful there should be two modules present: *rt2x00/mt7630e.ko* and *btloader/mt76xx.ko*.  To install firmware and drivers you need to be root or use *sudo -s*:
 ```
-sudo make install
+sudo -s make install
 ```
 Load the drivers:
 ```
@@ -27,7 +27,7 @@ Drivers should be automatically loaded after reboot.
 You can uninstall drivers and firmware by running:
 ```
 cd path_to_mt7630e/
-sudo make uninstall
+sudo -s make uninstall
 ```
 
 You can also use the driver without installing it.  First copy the firmware:

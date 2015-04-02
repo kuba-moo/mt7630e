@@ -11,7 +11,7 @@ clean:
 	$(MAKE) -C $(KDIR) M=$(PWD)/rt2x00 clean
 	$(MAKE) -C $(KDIR) M=$(PWD)/btloader clean
 
-install: all
+install:
 	cp -v firmware/*/* /lib/firmware/
 	cp rt2x00/mt7630e.ko $(DST_DIR)
 	cp btloader/mt76xx.ko $(DST_DIR)

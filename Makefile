@@ -22,3 +22,10 @@ uninstall:
 	rm -vf $(DST_DIR)/mt7630e.ko
 	rm -vf $(DST_DIR)/mt76xx.ko
 	depmod
+
+dkms:
+	cp -v firmware/*/* /lib/firmware/
+	cp -R . /usr/src/mt7630e-0.1
+	dkms add -m mt7630e -v 0.1
+	dkms build -m mt7630e -v 0.1
+	dkms install -m mt7630e -v 0.1

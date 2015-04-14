@@ -44,6 +44,12 @@ sudo insmod ./btloader/mt76xx.ko
 ```
 Note: loading rt2800pci will make sure all required modules are present before you load the proper driver. You can *modprobe -r rt2800pci* to remove all unnecessary modules after *mt7630e* was loaded.
 
+It is possible to enable dynamic module build with dkms package:
+```
+sudo make dkms
+```
+Drivers will be automatically rebuild for every new kernel update
+
 For original instructions see [ReadMe](ReadMe).
 
 #### Source
